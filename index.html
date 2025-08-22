@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Bravix AI - Tu Recepcionista IA con Voz Humana
+  </title>
+  <meta content="Revoluciona tu atención telefónica con recepcionistas de IA que combinan tecnología avanzada y calidez humana. Disponibles 24/7 para transformar cada llamada en oportunidad." name="description"/>
+  <!-- Open Graph Tags -->
+  <meta content="Bravix AI - Tu Recepcionista IA con Voz Humana" property="og:title"/>
+  <meta content="Revoluciona tu atención telefónica con recepcionistas de IA que combinan tecnología avanzada y calidez humana. Disponibles 24/7 para transformar cada llamada en oportunidad." property="og:description"/>
+  <meta content="website" property="og:type"/>
+  <meta content="https://bravixai.com" property="og:url"/>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet"/>
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+   /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* CSS Variables */
+        :root {
+            --background: hsl(222, 84%, 5%);
+            --foreground: hsl(0, 0%, 100%);
+            --card: hsl(220, 13%, 18%);
+            --card-foreground: hsl(0, 0%, 100%);
+            --primary: hsl(263, 70%, 50%);
+            --primary-foreground: hsl(0, 0%, 100%);
+            --secondary: hsl(220, 13%, 18%);
+            --muted: hsl(215, 28%, 17%);
+            --muted-foreground: hsl(217, 10%, 65%);
+            --border: hsl(217, 32%, 17%);
+            --ring: hsl(263, 70%, 50%);
+            --dark-primary: #0F172A;
+            --dark-secondary: #1E293B;
+            --purple-accent: #8B5CF6;
+            --turquoise-accent: #06B6D4;
+            --cyan-accent: #67E8F9;
+            --font-poppins: 'Poppins', sans-serif;
+        }
+
+        /* Base Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark-primary);
+            color: var(--foreground);
+            font-family: var(--font-poppins);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Utility Classes */
+        .glassmorphism {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--purple-accent), var(--turquoise-accent), var(--cyan-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--purple-accent), var(--turquoise-accent));
+        }
+
+        .nav-scrolled {
+            backdrop-filter: blur(16px);
+            background: rgba(15, 23, 42, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s ease-out;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Button Styles */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--purple-accent), var(--turquoise-accent));
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: inherit;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: inherit;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-floating {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--purple-accent), var(--turquoise-accent));
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            animation: pulse-float 3s ease-in-out infinite;
+        }
+
+        .btn-floating:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.6);
+        }
+
+        .btn-nav {
+            background: none;
+            border: none;
+            color: #d1d5db;
+            cursor: pointer;
+            padding: 10px 18px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .btn-nav:hover {
+            color: var(--turquoise-accent);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-1px);
+        }
+
+        /* Icon Styles */
+        .icon-feature {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .icon-contact {
+            font-size: 1.5rem;
+            color: var(--purple-accent);
+        }
+
+        .icon-social {
+            font-size: 1.5rem;
+            color: #9ca3af;
+            transition: all 0.3s ease;
+            padding: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .icon-social:hover {
+            color: var(--turquoise-accent);
+            background: rgba(6, 182, 212, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Color Classes */
+        .text-gray-300 { color: #d1d5db; }
+        .text-gray-400 { color: #9ca3af; }
+        .text-red-400 { color: #f87171; }
+        .text-green-400 { color: #4ade80; }
+        .text-yellow-400 { color: #facc15; }
+        .text-purple-accent { color: var(--purple-accent); }
+        .text-turquoise-accent { color: var(--turquoise-accent); }
+        .text-cyan-accent { color: var(--cyan-accent); }
+
+        /* Layout Classes */
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
+        .max-w-7xl { max-width: 80rem; }
+        .max-w-4xl { max-width: 56rem; }
+        .max-w-3xl { max-width: 48rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+
+        /* Spacing */
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+        .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+        .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+
+        .pt-32 { padding-top: 8rem; }
+        .pb-16 { padding-bottom: 4rem; }
+
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-12 { margin-bottom: 3rem; }
+        .mb-16 { margin-bottom: 4rem; }
+        .mt-8 { margin-top: 2rem; }
+
+        .space-x-4 > * + * { margin-left: 1rem; }
+        .space-y-4 > * + * { margin-top: 1rem; }
+        .space-y-6 > * + * { margin-top: 1.5rem; }
+        .space-y-8 > * + * { margin-top: 2rem; }
+        .gap-8 { gap: 2rem; }
+
+        /* Typography */
+        .text-sm { font-size: 0.875rem; }
+        .text-lg { font-size: 1.125rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-4xl { font-size: 2.25rem; }
+        .text-5xl { font-size: 3rem; }
+        .text-7xl { font-size: 4.5rem; }
+        .font-semibold { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        .leading-tight { line-height: 1.25; }
+        .leading-relaxed { line-height: 1.625; }
+        .italic { font-style: italic; }
+
+        /* Flexbox & Grid */
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .grid { display: grid; }
+
+        /* Sizing */
+        .w-full { width: 100%; }
+        .h-48 { height: 12rem; }
+        .min-h-screen { min-height: 100vh; }
+
+        /* Positioning */
+        .fixed { position: fixed; }
+        .absolute { position: absolute; }
+        .relative { position: relative; }
+        .top-0 { top: 0; }
+        .left-0 { left: 0; }
+        .right-0 { right: 0; }
+        .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+        .z-50 { z-index: 50; }
+
+        /* Borders & Shadows */
+        .border { border-width: 1px; }
+        .border-t { border-top-width: 1px; }
+        .rounded-xl { border-radius: 0.75rem; }
+        .rounded-2xl { border-radius: 1rem; }
+        .rounded-full { border-radius: 9999px; }
+        .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+
+        /* Overflow */
+        .overflow-hidden { overflow: hidden; }
+        .overflow-x-auto { overflow-x: auto; }
+
+        /* Display & Text */
+        .block { display: block; }
+        .hidden { display: none; }
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .whitespace-nowrap { white-space: nowrap; }
+        .object-cover { object-fit: cover; }
+
+        /* Form Styles */
+        input, textarea, select {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.75rem;
+            color: white;
+            font-family: inherit;
+            padding: 14px 18px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #9ca3af;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--purple-accent);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        select option {
+            background: var(--dark-primary);
+            color: white;
+        }
+
+        textarea {
+            resize: none;
+            min-height: 120px;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--purple-accent), var(--turquoise-accent));
+        }
+
+        th, td {
+            padding: 1.2rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th:nth-child(2), th:nth-child(3),
+        td:nth-child(2), td:nth-child(3) {
+            text-align: center;
+        }
+
+        tbody tr {
+            transition: background-color 0.3s ease;
+        }
+
+        tbody tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Particles Animation */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.4), transparent);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { width: 25px; height: 25px; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 20px; height: 20px; left: 80%; animation-delay: 2s; }
+        .particle:nth-child(3) { width: 30px; height: 30px; left: 60%; animation-delay: 4s; }
+        .particle:nth-child(4) { width: 22px; height: 22px; left: 30%; animation-delay: 1s; }
+        .particle:nth-child(5) { width: 28px; height: 28px; left: 90%; animation-delay: 3s; }
+        .particle:nth-child(6) { width: 18px; height: 18px; left: 50%; animation-delay: 5s; }
+
+        /* Keyframe Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); opacity: 0.7; }
+            50% { transform: translateY(-30px); opacity: 1; }
+        }
+
+        @keyframes pulse-float {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-8px) scale(1.08); }
+        }
+
+        /* Responsive Design */
+        @media (min-width: 640px) {
+            .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+            .sm\:flex-row { flex-direction: row; }
+        }
+
+        @media (min-width: 768px) {
+            .md\:text-5xl { font-size: 3rem; }
+            .md\:text-7xl { font-size: 4.5rem; }
+            .md\:text-2xl { font-size: 1.5rem; }
+            .md\:flex { display: flex; }
+            .md\:hidden { display: none; }
+            .md\:block { display: block; }
+            .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .md\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        }
+
+        @media (min-width: 1024px) {
+            .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+            .lg\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .xl\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        }
+
+        /* Mobile Menu */
+        #mobile-menu {
+            transition: all 0.3s ease;
+        }
+
+        #mobile-menu.show {
+            display: block;
+        }
+
+        /* Dividers */
+        .divide-y > * + * {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .border-white-10 {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .border-white-20 {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .bg-dark-secondary-50 {
+            background-color: rgba(30, 41, 59, 0.5);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--purple-accent);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--turquoise-accent);
+        }
+
+        /* Enhanced Effects */
+        .sector-card:hover {
+            transform: translateY(-5px) scale(1.03);
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 25px 50px rgba(139, 92, 246, 0.2);
+        }
+    
+        /* Imagen con overlay para uniformar estilo */
+        .img-overlay {
+            position: relative;
+        }
+        .img-overlay::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(6, 182, 212, 0.25));
+            pointer-events: none;
+        }
+  </style>
+ </head>
+ <body>
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 py-4" id="navigation" style="transition: all 0.3s ease;">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between">
+     <!-- Logo -->
+     <div class="flex items-center">
+      <span class="text-2xl font-bold gradient-text">
+       Bravix AI
+      </span>
+     </div>
+     <!-- Desktop Menu -->
+     <div class="hidden md:flex items-center space-x-4">
+      <button class="btn-nav" onclick="scrollToSection('features')">
+       <i class="fas fa-star mr-2">
+       </i>
+       Características
+      </button>
+      <button class="btn-nav" onclick="scrollToSection('sectors')">
+       <i class="fas fa-industry mr-2">
+       </i>
+       Sectores
+      </button>
+      <button class="btn-nav" onclick="scrollToSection('testimonials')">
+       <i class="fas fa-comments mr-2">
+       </i>
+       Testimonios
+      </button>
+      <button class="btn-nav" onclick="scrollToSection('contact')">
+       <i class="fas fa-envelope mr-2">
+       </i>
+       Contacto
+      </button>
+      <!-- CTA Button -->
+      <a class="btn-primary" href="https://api.leadconnectorhq.com/widget/booking/KQZUTE5liDC2SWi5yA1U">
+       <i class="fas fa-calendar-plus">
+       </i>
+       Reserva tu llamada demo
+      </a>
+     </div>
+     <!-- Mobile Menu Button -->
+     <div class="md:hidden">
+      <button class="text-white p-2" id="mobile-menu-btn" style="background: none; border: none; cursor: pointer;">
+       <i class="fas fa-bars text-xl" id="menu-icon">
+       </i>
+       <i class="fas fa-times text-xl hidden" id="close-icon">
+       </i>
+      </button>
+     </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="md:hidden mt-4 glassmorphism rounded-2xl hidden" id="mobile-menu">
+     <div class="px-6 py-4 space-y-4">
+      <button class="block text-gray-300 hover:text-turquoise-accent transition-colors w-full text-left py-2" onclick="scrollToSection('features')">
+       <i class="fas fa-star mr-3">
+       </i>
+       Características
+      </button>
+      <button class="block text-gray-300 hover:text-turquoise-accent transition-colors w-full text-left py-2" onclick="scrollToSection('sectors')">
+       <i class="fas fa-industry mr-3">
+       </i>
+       Sectores
+      </button>
+      <button class="block text-gray-300 hover:text-turquoise-accent transition-colors w-full text-left py-2" onclick="scrollToSection('testimonials')">
+       <i class="fas fa-comments mr-3">
+       </i>
+       Testimonios
+      </button>
+      <button class="block text-gray-300 hover:text-turquoise-accent transition-colors w-full text-left py-2" onclick="scrollToSection('contact')">
+       <i class="fas fa-envelope mr-3">
+       </i>
+       Contacto
+      </button>
+      <a class="btn-primary w-full justify-center mt-4" href="https://api.leadconnectorhq.com/widget/booking/KQZUTE5liDC2SWi5yA1U">
+       <i class="fas fa-calendar-plus">
+       </i>
+       Reserva tu llamada demo
+      </a>
+     </div>
+    </div>
+   </div>
+  </nav>
+  <main>
+   <!-- Hero Section -->
+   <section class="min-h-screen flex items-center justify-center pt-32 pb-16 relative overflow-hidden" id="hero">
+    <!-- Particles Background -->
+    <div class="particles">
+     <div class="particle">
+     </div>
+     <div class="particle">
+     </div>
+     <div class="particle">
+     </div>
+     <div class="particle">
+     </div>
+     <div class="particle">
+     </div>
+     <div class="particle">
+     </div>
+    </div>
+    <!-- Gradient background -->
+    <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), transparent, rgba(6, 182, 212, 0.2));">
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 scroll-reveal">
+     <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+      Tu Recepcionista IA
+      <br/>
+      <span class="gradient-text">
+       con Voz Humana
+      </span>
+     </h1>
+     <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
+      Revoluciona tu atención telefónica con recepcionistas de IA que combinan tecnología avanzada y calidez humana. Disponibles 24/7 para transformar cada llamada en oportunidad.
+     </p>
+     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <a class="btn-primary text-lg px-8 py-4" href="https://api.leadconnectorhq.com/widget/booking/KQZUTE5liDC2SWi5yA1U">
+       <i class="fas fa-rocket">
+       </i>
+       Reserva tu llamada demo
+      </a>
+      <button class="btn-secondary text-lg px-8 py-4" onclick="scrollToSection('features')">
+       <i class="fas fa-play-circle">
+       </i>
+       Ver Características
+      </button>
+     </div>
+    </div>
+   </section>
+   <!-- Features Section -->
+   <section class="py-20 bg-dark-secondary-50" id="features">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-16 scroll-reveal">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">
+       ¿Por qué elegir
+       <span class="gradient-text">
+        Bravix AI
+       </span>
+       ?
+      </h2>
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+       Una recepcionista que nunca descansa, siempre profesional y lista para hacer crecer tu negocio
+      </p>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+      <div class="feature-card glassmorphism p-8 rounded-2xl hover:shadow-xl transition-all duration-300 scroll-reveal text-center">
+       <i class="fas fa-microphone icon-feature text-purple-accent">
+       </i>
+       <h3 class="text-xl font-semibold mb-4">
+        Voz 100% Humana
+       </h3>
+       <p class="text-gray-300">
+        Voz tan natural que los clientes creerán que hablan con una persona real. Calidez y profesionalidad en cada conversación.
+       </p>
+      </div>
+      <div class="feature-card glassmorphism p-8 rounded-2xl hover:shadow-xl transition-all duration-300 scroll-reveal text-center">
+       <i class="fas fa-clock icon-feature text-turquoise-accent">
+       </i>
+       <h3 class="text-xl font-semibold mb-4">
+        Disponible 24/7
+       </h3>
+       <p class="text-gray-300">
+        Disponibilidad total para los clientes, sin descansos ni limitaciones de horario.
+       </p>
+      </div>
+      <div class="feature-card glassmorphism p-8 rounded-2xl hover:shadow-xl transition-all duration-300 scroll-reveal text-center">
+       <i class="fas fa-users icon-feature text-cyan-accent">
+       </i>
+       <h3 class="text-xl font-semibold mb-4">
+        Atención Simultánea
+       </h3>
+       <p class="text-gray-300">
+        Gestión simultánea de llamadas, asegurando que ningún cliente espere y que todos reciban atención personalizada.
+       </p>
+      </div>
+      <div class="feature-card glassmorphism p-8 rounded-2xl hover:shadow-xl transition-all duration-300 scroll-reveal text-center">
+       <i class="fas fa-bell icon-feature text-purple-accent">
+       </i>
+       <h3 class="text-xl font-semibold mb-4">
+        Seguimiento Automático
+       </h3>
+       <p class="text-gray-300">
+        Recordatorios automáticos para mejorar la asistencia y reducir las cancelaciones.
+       </p>
+      </div>
+     </div>
+     <!-- Comparison Table -->
+     <div class="scroll-reveal">
+      <h3 class="text-3xl font-bold text-center mb-8">
+       <span class="gradient-text">
+        IA vs Humano
+       </span>
+      </h3>
+      <p class="text-xl text-gray-300 text-center mb-12">
+       Comparación detallada de ventajas
+      </p>
+      <div class="glassmorphism rounded-2xl overflow-hidden">
+       <div class="overflow-x-auto">
+        <table class="w-full">
+         <thead class="gradient-bg">
+          <tr>
+           <th class="px-6 py-4 text-left font-semibold">
+            <i class="fas fa-list mr-2">
+            </i>
+            Característica
+           </th>
+           <th class="px-6 py-4 text-center font-semibold">
+            <i class="fas fa-robot mr-2">
+            </i>
+            Recepcionista IA
+           </th>
+           <th class="px-6 py-4 text-center font-semibold">
+            <i class="fas fa-user mr-2">
+            </i>
+            Recepcionista Humana
+           </th>
+          </tr>
+         </thead>
+         <tbody class="divide-y">
+          <tr>
+           <td class="px-6 py-4 font-medium">
+            <i class="fas fa-clock text-gray-400 mr-2">
+            </i>
+            Disponibilidad
+           </td>
+           <td class="px-6 py-4 text-center text-green-400">
+            <i class="fas fa-check-circle mr-2">
+            </i>
+            24/7 sin interrupciones
+           </td>
+           <td class="px-6 py-4 text-center text-red-400">
+            <i class="fas fa-times-circle mr-2">
+            </i>
+            8 horas/día máximo
+           </td>
+          </tr>
+          <tr>
+           <td class="px-6 py-4 font-medium">
+            <i class="fas fa-euro-sign text-gray-400 mr-2">
+            </i>
+            Coste mensual
+           </td>
+           <td class="px-6 py-4 text-center text-green-400">
+            <i class="fas fa-arrow-down mr-2">
+            </i>
+            Menos coste que una recepcionista tradicional
+           </td>
+           <td class="px-6 py-4 text-center text-red-400">
+            <i class="fas fa-arrow-up mr-2">
+            </i>
+            1,500€+ salario
+           </td>
+          </tr>
+          <tr>
+           <td class="px-6 py-4 font-medium">
+            <i class="fas fa-phone text-gray-400 mr-2">
+            </i>
+            Llamadas simultáneas
+           </td>
+           <td class="px-6 py-4 text-center text-green-400">
+            <i class="fas fa-infinity mr-2">
+            </i>
+            Ilimitadas
+           </td>
+           <td class="px-6 py-4 text-center text-red-400">
+            <i class="fas fa-hand-paper mr-2">
+            </i>
+            1 llamada
+           </td>
+          </tr>
+          <tr>
+           <td class="px-6 py-4 font-medium">
+            <i class="fas fa-thermometer-half text-gray-400 mr-2">
+            </i>
+            Días de enfermedad
+           </td>
+           <td class="px-6 py-4 text-center text-green-400">
+            <i class="fas fa-shield-alt mr-2">
+            </i>
+            Nunca
+           </td>
+           <td class="px-6 py-4 text-center text-red-400">
+            <i class="fas fa-bed mr-2">
+            </i>
+            5-10 días/año
+           </td>
+          </tr>
+          <tr>
+           <td class="px-6 py-4 font-medium">
+            <i class="fas fa-calendar-check text-gray-400 mr-2">
+            </i>
+            Seguimiento Automático
+           </td>
+           <td class="px-6 py-4 text-center text-green-400">
+            <i class="fas fa-robot mr-2">
+            </i>
+            Recordatorios automáticos
+           </td>
+           <td class="px-6 py-4 text-center text-red-400">
+            <i class="fas fa-hand-paper mr-2">
+            </i>
+            Manual, inconsistente
+           </td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- Sectors Section -->
+   <section class="py-20" id="sectors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-16 scroll-reveal">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">
+       Sectores que
+       <span class="gradient-text">
+        Transformamos
+       </span>
+      </h2>
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+       Adaptamos nuestra IA a las necesidades específicas de tu industria
+      </p>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <!-- Dental Clinics -->
+      <div class="sector-card glassmorphism rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 scroll-reveal">
+       <img alt="Clínica dental - paciente y doctora" class="w-full h-48 object-cover img-overlay" src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=400&amp;h=250&amp;q=80"/>
+       <div class="p-6">
+        <h3 class="text-xl font-semibold mb-3 text-purple-accent">
+         <i class="fas fa-tooth mr-2">
+         </i>
+         Clínicas Dentales
+        </h3>
+        <p class="text-gray-300">
+         Gestión de citas, recordatorios de tratamientos y atención personalizada para pacientes.
+        </p>
+       </div>
+      </div>
+      <!-- Automotive Workshops -->
+      <div class="sector-card glassmorphism rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 scroll-reveal">
+       <img alt="Mecánico trabajando en taller automotriz" class="w-full h-48 object-cover img-overlay" src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=400&amp;h=250"/>
+       <div class="p-6">
+        <h3 class="text-xl font-semibold mb-3 text-turquoise-accent">
+         <i class="fas fa-wrench mr-2">
+         </i>
+         Talleres Mecánicos
+        </h3>
+        <p class="text-gray-300">
+         Coordinación de reparaciones, presupuestos automáticos y seguimiento de vehículos.
+        </p>
+       </div>
+      </div>
+      <!-- Veterinary Clinics -->
+      <div class="sector-card glassmorphism rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 scroll-reveal">
+       <img alt="Clínica veterinaria - perro en consulta veterinaria" class="w-full h-48 object-cover img-overlay" src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=400&amp;h=250"/>
+       <div class="p-6">
+        <h3 class="text-xl font-semibold mb-3 text-cyan-accent">
+         <i class="fas fa-paw mr-2">
+         </i>
+         Clínicas Veterinarias
+        </h3>
+        <p class="text-gray-300">
+         Citas de urgencia, recordatorios de vacunas y atención empática para mascotas.
+        </p>
+       </div>
+      </div>
+      <!-- Beauty Clinics -->
+      <div class="sector-card glassmorphism rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 scroll-reveal">
+       <img alt="Aesthetic clinic beauty treatment room" class="w-full h-48 object-cover img-overlay" src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=400&amp;h=250"/>
+       <div class="p-6">
+        <h3 class="text-xl font-semibold mb-3 text-purple-accent">
+         <i class="fas fa-spa mr-2">
+         </i>
+         Clínicas de Estética
+        </h3>
+        <p class="text-gray-300">
+         Consultas de belleza, programación de tratamientos y atención de lujo.
+        </p>
+       </div>
+      </div>
+      <!-- Real Estate -->
+      <div class="sector-card glassmorphism rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 scroll-reveal">
+       <img alt="Modern real estate office" class="w-full h-48 object-cover img-overlay" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=400&amp;h=250"/>
+       <div class="p-6">
+        <h3 class="text-xl font-semibold mb-3 text-turquoise-accent">
+         <i class="fas fa-home mr-2">
+         </i>
+         Inmobiliarias
+        </h3>
+        <p class="text-gray-300">
+         Gestión de visitas, información de propiedades y seguimiento de clientes.
+        </p>
+       </div>
+      </div>
+      <!-- Car Dealerships -->
+      <div class="sector-card glassmorphism rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 scroll-reveal">
+       <img alt="Concesionario de autos - pareja elegante" class="w-full h-48 object-cover img-overlay" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=400&amp;h=250&amp;q=80"/>
+       <div class="p-6">
+        <h3 class="text-xl font-semibold mb-3 text-cyan-accent">
+         <i class="fas fa-car mr-2">
+         </i>
+         Concesionarios
+        </h3>
+        <p class="text-gray-300">
+         Citas para pruebas de conducción, información de vehículos y financiación.
+        </p>
+       </div>
+      </div>
+      <!-- Law Firms -->
+      <div class="sector-card glassmorphism rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 scroll-reveal">
+       <img alt="Professional law office" class="w-full h-48 object-cover img-overlay" src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=400&amp;h=250"/>
+       <div class="p-6">
+        <h3 class="text-xl font-semibold mb-3 text-purple-accent">
+         <i class="fas fa-balance-scale mr-2">
+         </i>
+         Bufetes de Abogados
+        </h3>
+        <p class="text-gray-300">
+         Gestión de consultas, citas con abogados y seguimiento de casos.
+        </p>
+       </div>
+      </div>
+      <!-- Medical Centers -->
+      <div class="sector-card glassmorphism rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 scroll-reveal">
+       <img alt="Modern medical clinic interior" class="w-full h-48 object-cover img-overlay" src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=400&amp;h=250"/>
+       <div class="p-6">
+        <h3 class="text-xl font-semibold mb-3 text-turquoise-accent">
+         <i class="fas fa-stethoscope mr-2">
+         </i>
+         Centros Médicos
+        </h3>
+        <p class="text-gray-300">
+         Citas médicas, recordatorios de consultas y gestión de historiales.
+        </p>
+       </div>
+      </div>
+      <div class="sector-card glassmorphism rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 scroll-reveal">
+       <img alt="Salón de belleza - propietaria sonriente" class="w-full h-48 object-cover img-overlay" src="https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=400&amp;h=250&amp;q=80"/>
+       <div class="p-6">
+        <h3 class="text-xl font-semibold mb-3 text-purple-accent">
+         <i class="fas fa-cut mr-2">
+         </i>
+         Salones de Belleza
+        </h3>
+        <p class="text-gray-300">
+         Gestión de citas, recordatorios de servicios y atención personalizada en salones de belleza.
+        </p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- Testimonials Section -->
+   <section class="py-20 bg-dark-secondary-50" id="testimonials">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-16 scroll-reveal">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">
+       Lo que dicen nuestros
+       <span class="gradient-text">
+        Clientes
+       </span>
+      </h2>
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+       Testimonios reales de empresas que han transformado su atención telefónica
+      </p>
+     </div>
+     <div class="grid md:grid-cols-3 gap-8">
+      <div class="testimonial-card glassmorphism p-8 rounded-2xl hover:shadow-xl transition-all duration-300 scroll-reveal">
+       <div class="text-yellow-400 text-2xl mb-4">
+        <i class="fas fa-star">
+        </i>
+        <i class="fas fa-star">
+        </i>
+        <i class="fas fa-star">
+        </i>
+        <i class="fas fa-star">
+        </i>
+        <i class="fas fa-star">
+        </i>
+       </div>
+       <p class="text-gray-300 mb-6 italic">
+        <i class="fas fa-quote-left text-turquoise-accent mr-2">
+        </i>
+        Desde que implementamos Bravix AI, no hemos perdido una sola llamada. La voz es increíblemente natural y nuestros pacientes están muy satisfechos.
+        <i class="fas fa-quote-right text-turquoise-accent ml-2">
+        </i>
+       </p>
+       <div class="border-t border-white-20 pt-4">
+        <p class="font-semibold">
+         <i class="fas fa-user-md text-purple-accent mr-2">
+         </i>
+         Dr. Carmen Rodríguez
+        </p>
+        <p class="text-gray-400 text-sm">
+         Clínica Dental Sonrisa
+        </p>
+       </div>
+      </div>
+      <div class="testimonial-card glassmorphism p-8 rounded-2xl hover:shadow-xl transition-all duration-300 scroll-reveal">
+       <div class="text-yellow-400 text-2xl mb-4">
+        <i class="fas fa-star">
+        </i>
+        <i class="fas fa-star">
+        </i>
+        <i class="fas fa-star">
+        </i>
+        <i class="fas fa-star">
+        </i>
+        <i class="fas fa-star">
+        </i>
+       </div>
+       <p class="text-gray-300 mb-6 italic">
+        <i class="fas fa-quote-left text-turquoise-accent mr-2">
+        </i>
+        La atención 24/7 ha revolucionado nuestro negocio. Los recordatorios automáticos han reducido las cancelaciones en un 70%.
+        <i class="fas fa-quote-right text-turquoise-accent ml-2">
+        </i>
+       </p>
+       <div class="border-t border-white-20 pt-4">
+        <p class="font-semibold">
+         <i class="fas fa-wrench text-turquoise-accent mr-2">
+         </i>
+         Miguel Fernández
+        </p>
+        <p class="text-gray-400 text-sm">
+         Taller AutoExpres
+        </p>
+       </div>
+      </div>
+      <div class="testimonial-card glassmorphism p-8 rounded-2xl hover:shadow-xl transition-all duration-300 scroll-reveal">
+       <div class="text-yellow-400 text-2xl mb-4">
+        <i class="fas fa-star">
+        </i>
+        <i class="fas fa-star">
+        </i>
+        <i class="fas fa-star">
+        </i>
+        <i class="fas fa-star">
+        </i>
+        <i class="fas fa-star">
+        </i>
+       </div>
+       <p class="text-gray-300 mb-6 italic">
+        <i class="fas fa-quote-left text-turquoise-accent mr-2">
+        </i>
+        Nuestros clientes piensan que hablan con una persona real. La profesionalidad y calidez en cada conversación es impresionante.
+        <i class="fas fa-quote-right text-turquoise-accent ml-2">
+        </i>
+       </p>
+       <div class="border-t border-white-20 pt-4">
+        <p class="font-semibold">
+         <i class="fas fa-paw text-cyan-accent mr-2">
+         </i>
+         Ana López
+        </p>
+        <p class="text-gray-400 text-sm">
+         Centro Veterinario Amigos
+        </p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- Contact Section -->
+   <section class="py-20" id="contact">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-16 scroll-reveal">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">
+       ¿Listo para
+       <span class="gradient-text">
+        Transformar tu Negocio
+       </span>
+       ?
+      </h2>
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+       Contacta con nosotros y descubre cómo Bravix AI puede revolucionar tu atención telefónica
+      </p>
+     </div>
+     <div class="grid lg:grid-cols-2 gap-12">
+      <!-- Contact Information -->
+      <div class="scroll-reveal">
+       <h3 class="text-2xl font-semibold mb-8">
+        <i class="fas fa-address-book text-purple-accent mr-3">
+        </i>
+        Información de Contacto
+       </h3>
+       <div class="space-y-6">
+        <div class="flex items-center space-x-4">
+         <div class="icon-contact">
+          <i class="fas fa-envelope">
+          </i>
+         </div>
+         <div>
+          <p class="font-semibold">
+           Email
+          </p>
+          <p class="text-gray-300">
+           contact@bravixagency.com
+          </p>
+         </div>
+        </div>
+        <div class="flex items-center space-x-4">
+         <div class="icon-contact" style="color: var(--turquoise-accent);">
+          <i class="fas fa-phone">
+          </i>
+         </div>
+         <div>
+          <p class="font-semibold">
+           Teléfono
+          </p>
+          <p class="text-gray-300">
+           +34 677702832
+          </p>
+         </div>
+        </div>
+        <div class="flex items-center space-x-4">
+         <div class="icon-contact" style="color: var(--cyan-accent);">
+          <i class="fas fa-map-marker-alt">
+          </i>
+         </div>
+         <div>
+          <p class="font-semibold">
+           País
+          </p>
+          <p class="text-gray-300">
+           España
+          </p>
+         </div>
+        </div>
+       </div>
+      </div>
+      <!-- Contact Form -->
+      <div class="glassmorphism p-8 rounded-2xl scroll-reveal">
+       <form action="https://formspree.io/f/movlooyj" class="space-y-6" method="POST">
+        <!-- Nombre -->
+        <div>
+         <div class="relative">
+          <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+          </i>
+          <input class="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-accent focus:border-transparent" name="name" placeholder="Tu nombre completo" required="" type="text"/>
+         </div>
+        </div>
+        <!-- Email -->
+        <div>
+         <div class="relative">
+          <i class="fas fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+          </i>
+          <input class="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-accent focus:border-transparent" name="email" placeholder="tu@email.com" required="" type="email"/>
+         </div>
+        </div>
+        <!-- Sector -->
+        <div>
+         <div class="relative">
+          <i class="fas fa-industry absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+          </i>
+          <select class="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-accent focus:border-transparent" name="sector" required="">
+           <option disabled="" selected="" value="">
+            Selecciona tu sector
+           </option>
+           <option value="dental">
+            🦷 Clínicas Dentales
+           </option>
+           <option value="automotive">
+            🔧 Talleres Mecánicos
+           </option>
+           <option value="veterinary">
+            🐾 Clínicas Veterinarias
+           </option>
+           <option value="beauty">
+            💆 Clínicas de Estética
+           </option>
+           <option value="realestate">
+            🏠 Inmobiliarias
+           </option>
+           <option value="automotive-sales">
+            🚗 Concesionarios
+           </option>
+           <option value="legal">
+            ⚖️ Bufetes de Abogados
+           </option>
+           <option value="medical">
+            🩺 Centros Médicos
+           </option>
+           <option value="restaurant">
+            🍽️ Restaurantes
+           </option>
+           <option value="fitness">
+            💪 Gimnasios
+           </option>
+           <option value="other">
+            📋 Otro
+           </option>
+          </select>
+         </div>
+        </div>
+        <!-- Mensaje -->
+        <div>
+         <div class="relative">
+          <i class="fas fa-comment absolute left-4 top-6 text-gray-400">
+          </i>
+          <textarea class="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-accent focus:border-transparent resize-none" name="message" placeholder="Cuéntanos sobre tu negocio y cómo podemos ayudarte..." required="" rows="4"></textarea>
+         </div>
+        </div>
+        <!-- Campo oculto -->
+        <input name="_replyto" type="hidden" value="contact@bravixagency.com"/>
+        <!-- Botón -->
+        <button class="btn-primary w-full justify-center" type="submit">
+         <i class="fas fa-paper-plane">
+         </i>
+         Enviar Mensaje
+        </button>
+       </form>
+      </div>
+     </div>
+    </div>
+   </section>
+  </main>
+  <!-- Footer -->
+  <footer class="bg-dark-secondary-50" style="border-top: 1px solid rgba(255, 255, 255, 0.1);">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid md:grid-cols-4 gap-8">
+     <!-- Company Info -->
+     <div class="md:col-span-2">
+      <h3 class="text-2xl font-bold gradient-text mb-4">
+       Bravix AI
+      </h3>
+      <p class="text-gray-300 mb-6 max-w-md">
+       Revolucionando la atención telefónica con inteligencia artificial y voz humana. 
+                        Tu recepcionista virtual disponible 24/7.
+      </p>
+     </div>
+     <!-- Quick Links -->
+     <div>
+      <h4 class="text-lg font-semibold mb-4">
+       <i class="fas fa-link text-turquoise-accent mr-2">
+       </i>
+       Enlaces Rápidos
+      </h4>
+      <ul class="space-y-2">
+       <li>
+        <button class="text-gray-400 hover:text-turquoise-accent transition-colors" onclick="scrollToSection('features')">
+         <i class="fas fa-star mr-2">
+         </i>
+         Características
+        </button>
+       </li>
+       <li>
+        <button class="text-gray-400 hover:text-turquoise-accent transition-colors" onclick="scrollToSection('sectors')">
+         <i class="fas fa-industry mr-2">
+         </i>
+         Sectores
+        </button>
+       </li>
+       <li>
+        <button class="text-gray-400 hover:text-turquoise-accent transition-colors" onclick="scrollToSection('testimonials')">
+         <i class="fas fa-comments mr-2">
+         </i>
+         Testimonios
+        </button>
+       </li>
+       <li>
+        <button class="text-gray-400 hover:text-turquoise-accent transition-colors" onclick="scrollToSection('contact')">
+         <i class="fas fa-envelope mr-2">
+         </i>
+         Contacto
+        </button>
+       </li>
+      </ul>
+     </div>
+     <!-- Legal -->
+     <div>
+      <h4 class="text-lg font-semibold mb-4">
+       <i class="fas fa-gavel text-cyan-accent mr-2">
+       </i>
+       Legal
+      </h4>
+      <ul class="space-y-2">
+       <li>
+        <a class="text-gray-400 hover:text-turquoise-accent transition-colors" href="#">
+         <i class="fas fa-shield-alt mr-2">
+         </i>
+         Política de Privacidad
+        </a>
+       </li>
+       <li>
+        <a class="text-gray-400 hover:text-turquoise-accent transition-colors" href="#">
+         <i class="fas fa-file-contract mr-2">
+         </i>
+         Términos de Uso
+        </a>
+       </li>
+       <li>
+        <a class="text-gray-400 hover:text-turquoise-accent transition-colors" href="#">
+         <i class="fas fa-info-circle mr-2">
+         </i>
+         Aviso Legal
+        </a>
+       </li>
+       <li>
+        <a class="text-gray-400 hover:text-turquoise-accent transition-colors" href="#">
+         <i class="fas fa-cookie-bite mr-2">
+         </i>
+         Cookies
+        </a>
+       </li>
+      </ul>
+     </div>
+    </div>
+    <div class="border-t border-white-10 mt-8 pt-8 text-center">
+     <p class="text-gray-400">
+      <i class="fas fa-copyright mr-2">
+      </i>
+      © 2025 Bravix AI. Todos los derechos reservados.
+     </p>
+    </div>
+   </div>
+  </footer>
+  <!-- Floating Calendar Button -->
+  <a class="btn-floating" href="https://api.leadconnectorhq.com/widget/booking/KQZUTE5liDC2SWi5yA1U">
+   <i class="fas fa-calendar-alt text-xl">
+   </i>
+  </a>
+  <script>
+   // Navigation scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navigation');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+            
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling function
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                document.getElementById('menu-icon').classList.remove('hidden');
+                document.getElementById('close-icon').classList.add('hidden');
+            }
+        }
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission handler
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Show success message with enhanced styling
+            const notification = document.createElement('div');
+            notification.innerHTML = `
+                <div style="position: fixed; top: 20px; right: 20px; background: linear-gradient(135deg, var(--purple-accent), var(--turquoise-accent)); color: white; padding: 16px 24px; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); z-index: 1001; font-family: inherit; transform: translateX(100%); transition: transform 0.3s ease;">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    ¡Mensaje enviado! Nos pondremos en contacto contigo pronto.
+                </div>
+            `;
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.firstElementChild.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Remove notification after 5 seconds
+            setTimeout(() => {
+                notification.firstElementChild.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 5000);
+            
+            // Reset form
+            event.target.reset();
+            
+            return false;
+        }
+
+        // Initialize scroll reveal and enhanced animations on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Trigger initial animations
+            setTimeout(() => {
+                document.querySelectorAll('.scroll-reveal').forEach(el => {
+                    if (el.getBoundingClientRect().top < window.innerHeight) {
+                        el.classList.add('revealed');
+                    }
+                });
+            }, 100);
+            
+            // Add staggered animation delays to sector cards
+            const sectorCards = document.querySelectorAll('.sector-card');
+            sectorCards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.1}s`;
+            });
+            
+            // Add staggered animation delays to feature cards
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Enhanced particle system
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            particle.style.opacity = Math.random() * 0.5 + 0.3;
+            return particle;
+        }
+
+        // Add more particles periodically
+        setInterval(() => {
+            const particleContainers = document.querySelectorAll('.particles');
+            particleContainers.forEach(container => {
+                if (container.children.length < 8) {
+                    container.appendChild(createParticle());
+                }
+            });
+        }, 3000);
+  </script>
+ </body>
+</html>
